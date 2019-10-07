@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+ 
+ <!-- 需求：点击某个按钮，提示：点击的是第n个按钮 -->
+ <button>按钮1</button>
+ <button>按钮2</button>
+ <button>按钮3</button>
+ <script>
+     var btns=document.getElementsByTagName('button')
+     //遍历加监听
+    //  for(var i=0,length=btns.length;i<length;i++){
+    //      var btn=btns[i]
+    //      btn.onclick=function(){
+    //          alert('第'+(i+1)+'个')          //dom事件回调函数，只有点击了才会调用（此时i已经提前执行完到3了）
+    //      }
+    //  }
+
+    // for(var i=0,length=btns.length;i<length;i++){
+    //     var btn=btns[i]
+    //     btn.index=i
+    //     btn.onclick=function(){
+    //         alert('第'+(this.index+1)+'个')     //在调用此事件前就给各个button添加index属性
+    //     }
+    //     console.log(btn.index)
+    // }
+
+    //利用闭包
+    for(var i=0,length=btns.length;i<length;i++){
+        (function(i){
+            var btn=btns[i]
+            btn.onclick=function(){
+                alert('第'+(i+1)+'个')
+            }
+        })(i)
+    }
+
+</script>
+</body>
+</html>
